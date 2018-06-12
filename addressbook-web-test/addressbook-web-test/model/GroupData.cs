@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 
 {
-    class GroupData
+    public class GroupData
     {
         private string name;
         private string header;
         private string footer;
+
+        public GroupData()
+        {
+        }
 
         public GroupData(string name)
         {
