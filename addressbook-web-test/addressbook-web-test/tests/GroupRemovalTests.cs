@@ -9,11 +9,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            // applicationManager.Navigator.GoToGroupPage();
-            applicationManager.Navigator.GoToGroupPage();
             applicationManager.Group.RemovalGroup(1);
-            // applicationManager.Navigator.ReturnToGroupPage();
-
         }
     }
 }

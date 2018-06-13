@@ -1,8 +1,5 @@
-﻿using System;
-using System.Text;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
+﻿using NUnit.Framework;
+
 
 namespace WebAddressbookTests
 {
@@ -14,17 +11,9 @@ namespace WebAddressbookTests
         [SetUp]
         public void SetupTest()
         {
-            //FirefoxOptions options = new FirefoxOptions();
-            //options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
-            //options.UseLegacyImplementation = true;
-            //driver = new FirefoxDriver(options);
-            //baseURL = "http://localhost/";
-            //verificationErrors = new StringBuilder();
-
             applicationManager = new ApplicationManager();
             applicationManager.Navigator.OpenBasePage();
             applicationManager.Auth.Login(new AccountData("admin", "secret"));
-
         }
 
         [TearDown]

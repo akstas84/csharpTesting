@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
@@ -11,9 +8,7 @@ namespace WebAddressbookTests
     public class ApplicationManager
     {
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
         protected string baseURL;
-
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
@@ -24,10 +19,8 @@ namespace WebAddressbookTests
             FirefoxOptions options = new FirefoxOptions();
             options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             options.UseLegacyImplementation = true;
-            driver = new FirefoxDriver(options
-                );
+            driver = new FirefoxDriver(options);
             baseURL = "http://localhost";
-            verificationErrors = new StringBuilder();
 
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);

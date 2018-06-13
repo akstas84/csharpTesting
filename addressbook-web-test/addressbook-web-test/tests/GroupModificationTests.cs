@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
-namespace addressbook_web_test.tests
+namespace WebAddressbookTests
 {
-    class GroupModificationTests
+    [TestFixture]
+    public class GroupModificationTests : TestBase
     {
+        [Test]
+        public void GroupModificationTest()
+        {
+            GroupData newData = new GroupData();
+            newData.Name = "newFirstGroup";
+            newData.Header = "newFirst";
+            newData.Footer = "newFirst";
+            applicationManager.Group.Modify(1, newData);
+        }
     }
 }
