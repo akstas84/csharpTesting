@@ -3,7 +3,7 @@
 namespace WebAddressbookTests
 {
     [TestFixture]
-    class EntryRemuvalTests : TestBase
+    class EntryRemuvalTests : AuthTestBase
     {
         [Test]
         public void EntryRemuvalTest()
