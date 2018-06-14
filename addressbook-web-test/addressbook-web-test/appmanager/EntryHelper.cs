@@ -1,4 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -7,6 +10,30 @@ namespace WebAddressbookTests
         public EntryHelper(ApplicationManager manager) 
             : base(manager)
         {
+        }
+
+        public EntryHelper RemovalEntry()
+        {
+            manager.Navigator.OpenBasePage();
+            SelectEntry();
+            PushButtonDeleteEntry();
+            PopUpConfirmDeleteEntry();
+            return this;
+        }
+
+        private void PopUpConfirmDeleteEntry()
+        {
+            driver.SwitchTo().Alert().Accept();
+        }
+
+        private void PushButtonDeleteEntry()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+        }
+
+        private void SelectEntry()
+        {
+            driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
         }
 
         public void FillEntryForm(EntryData entryData)
@@ -35,6 +62,25 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("email")).SendKeys(entryData.Email);
             driver.FindElement(By.Name("homepage")).Clear();
             driver.FindElement(By.Name("homepage")).SendKeys(entryData.Homepage);
+        }
+
+        public EntryHelper Modify(EntryData newEntryData)
+        {
+            manager.Navigator.OpenBasePage();
+            EditEntry();
+            FillEntryForm(newEntryData);
+            PushButtonUpdate();
+            return this;
+        }
+
+        private void PushButtonUpdate()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+        }
+
+        private void EditEntry()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
         }
     }
 }

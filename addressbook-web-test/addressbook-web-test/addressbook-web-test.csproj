@@ -58,10 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="tests\EntryModificationTests.cs" />
+    <Compile Include="tests\EntryRemuvalTests.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
-    <Compile Include="tests\EntryCreationTest.cs" />
+    <Compile Include="tests\EntryCreationTests.cs" />
     <Compile Include="model\EntryData.cs" />
     <Compile Include="appmanager\EntryHelper.cs" />
     <Compile Include="model\GroupData.cs" />
