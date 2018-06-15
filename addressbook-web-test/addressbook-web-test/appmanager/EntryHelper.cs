@@ -21,6 +21,15 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public EntryHelper Modify(EntryData newEntryData)
+        {
+            manager.Navigator.OpenBasePage();
+            EditEntry();
+            FillEntryForm(newEntryData);
+            PushButtonUpdate();
+            return this;
+        }
+
         private void PopUpConfirmDeleteEntry()
         {
             driver.SwitchTo().Alert().Accept();
@@ -50,15 +59,6 @@ namespace WebAddressbookTests
             Type(By.Name("fax"), entryData.Fax);
             Type(By.Name("email"), entryData.Email);
             Type(By.Name("homepage"), entryData.Homepage);
-        }
-
-        public EntryHelper Modify(EntryData newEntryData)
-        {
-            manager.Navigator.OpenBasePage();
-            EditEntry();
-            FillEntryForm(newEntryData);
-            PushButtonUpdate();
-            return this;
         }
 
         private void PushButtonUpdate()

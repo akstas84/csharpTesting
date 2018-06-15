@@ -32,6 +32,15 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper RemovalGroup(int p)
+        {
+            manager.Navigator.GoToGroupPage();
+            SelectGroup(p);
+            DeleteGroup();
+            manager.Navigator.ReturnToGroupPage();
+            return this;
+        }
+
         private GroupHelper InitGroupModificaton()
         {
             driver.FindElement(By.Name("edit")).Click();
@@ -61,15 +70,6 @@ namespace WebAddressbookTests
             Type(By.Name("group_name"), group.Name);
             Type(By.Name("group_header"), group.Header);
             Type(By.Name("group_footer"), group.Footer);
-            return this;
-        }
-
-        public GroupHelper RemovalGroup(int p)
-        {
-            manager.Navigator.GoToGroupPage();
-            SelectGroup(p);
-            DeleteGroup();
-            manager.Navigator.ReturnToGroupPage();
             return this;
         }
 
