@@ -42,7 +42,20 @@ namespace WebAddressbookTests
 
         private void SelectEntry()
         {
-            driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
+            if (IsElementPresent(By.Name("selected[]")) == false)
+            {
+                manager.Navigator.GoToEtryPage();
+                EntryData entryData = new EntryData();
+                entryData.Firstname = "Ivan Petrovich Sidorov";
+                manager.Entry.FillEntryForm(entryData);
+                manager.Navigator.PushButtonEnter();
+
+                if (IsElementPresent(By.Name("selected[]")) == true)
+                {
+                    manager.Navigator.GoToEtryPage();
+                    driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
+                }
+            }
         }
 
         public void FillEntryForm(EntryData entryData)

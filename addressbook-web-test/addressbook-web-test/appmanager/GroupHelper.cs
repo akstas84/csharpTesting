@@ -5,6 +5,7 @@ namespace WebAddressbookTests
 {
     public class GroupHelper : HelperBase
     {
+        private string baseURL;
 
         public GroupHelper(ApplicationManager manager) 
             : base (manager)
@@ -75,12 +76,24 @@ namespace WebAddressbookTests
 
         private void DeleteGroup()
         {
-            driver.FindElement(By.Name("delete")).Click();
+                driver.FindElement(By.Name("delete")).Click();
         }
 
         private void SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            if (IsElementPresent(By.Name("selected[]")) == false)
+            {
+                GroupData group = new GroupData();
+                group.Name = "crGroupHelper";
+                group.Header = "crHelperFirst";
+                group.Footer = "crHelperFirst";
+                manager.Group.GroupCreater(group);
+
+                if (IsElementPresent(By.Name("selected[]")) == true)
+                {
+                    driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+                }
+            }
         }
     }
 }
