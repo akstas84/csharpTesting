@@ -12,6 +12,14 @@ namespace WebAddressbookTests
         {
         }
 
+        public EntryHelper EntryCreater(EntryData entryData)
+        {
+            manager.Navigator.GoToEtryPage();
+            manager.Entry.FillEntryForm(entryData);
+            manager.Navigator.PushButtonEnter();
+            return this;
+        }
+
         public EntryHelper RemovalEntry()
         {
             manager.Navigator.OpenBasePage();
@@ -30,31 +38,35 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private void PopUpConfirmDeleteEntry()
+        public void PopUpConfirmDeleteEntry()
         {
             driver.SwitchTo().Alert().Accept();
         }
 
-        private void PushButtonDeleteEntry()
+        public void PushButtonDeleteEntry()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
         }
 
-        private void SelectEntry()
+        public void SelectEntry()
         {
             if (IsElementPresent(By.Name("selected[]")) == false)
             {
-                manager.Navigator.GoToEtryPage();
-                EntryData entryData = new EntryData();
-                entryData.Firstname = "Ivan Petrovich Sidorov";
-                manager.Entry.FillEntryForm(entryData);
-                manager.Navigator.PushButtonEnter();
-
-                if (IsElementPresent(By.Name("selected[]")) == true)
-                {
                     manager.Navigator.GoToEtryPage();
-                    driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
-                }
+                    EntryData entryData = new EntryData();
+                    entryData.Firstname = "Petrovich Sidorov";
+                    entryData.Home = "!!!!!!!!!!!!";
+                    entryData.Mobile = "!!!!!!!!!!!!";
+                    entryData.Work = "!!!!!!!!!!!!";
+                    entryData.Fax = "!!!!!!!!!!!!";
+                    manager.Entry.FillEntryForm(entryData);
+                    manager.Navigator.PushButtonEnter();
+                    manager.Navigator.OpenBasePage();
+
+                    if (IsElementPresent(By.Name("selected[]")) == true)
+                    {
+                       driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
+                    }
             }
         }
 
@@ -74,12 +86,12 @@ namespace WebAddressbookTests
             Type(By.Name("homepage"), entryData.Homepage);
         }
 
-        private void PushButtonUpdate()
+        public void PushButtonUpdate()
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
         }
 
-        private void EditEntry()
+        public void EditEntry()
         {
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
         }

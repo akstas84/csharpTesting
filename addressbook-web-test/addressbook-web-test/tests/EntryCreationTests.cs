@@ -15,8 +15,6 @@ namespace WebAddressbookTests
         [Test]
         public void EntryCreationTest()
         {
-            applicationManager.Navigator.GoToEtryPage();
-
             EntryData entryData = new EntryData();
             entryData.Firstname = "Ivan";
             entryData.Middlename = "Ivanovich";
@@ -31,8 +29,7 @@ namespace WebAddressbookTests
             entryData.Email = "ivan@email.com";
             entryData.Homepage = "http://homepage/akIvan84";
 
-            applicationManager.Entry.FillEntryForm(entryData);
-            applicationManager.Navigator.PushButtonEnter();
+            applicationManager.Entry.EntryCreater(entryData);
         }
     }
 }
