@@ -26,6 +26,7 @@ namespace WebAddressbookTests
             SelectEntry();
             PushButtonDeleteEntry();
             PopUpConfirmDeleteEntry();
+
             return this;
         }
 
@@ -45,30 +46,31 @@ namespace WebAddressbookTests
 
         public void PushButtonDeleteEntry()
         {
-            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            if (driver.Url == baseURL + "/addressbook/group.php"
++                && IsElementPresent(By.Name("selected[]")) == true)
+            {
+                driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            }
         }
 
         public void SelectEntry()
         {
             if (IsElementPresent(By.Name("selected[]")) == false)
             {
-                    manager.Navigator.GoToEtryPage();
-                    EntryData entryData = new EntryData();
-                    entryData.Firstname = "Petrovich Sidorov";
-                    entryData.Home = "!!!!!!!!!!!!";
-                    entryData.Mobile = "!!!!!!!!!!!!";
-                    entryData.Work = "!!!!!!!!!!!!";
-                    entryData.Fax = "!!!!!!!!!!!!";
-                    manager.Entry.FillEntryForm(entryData);
-                    manager.Navigator.PushButtonEnter();
-                    manager.Navigator.OpenBasePage();
+                EntryData entryData = new EntryData();
+                entryData.Firstname = "Sidorov";
+                entryData.Home = "!!!!!!!!!!!!";
+                entryData.Address = "!!!!!!!!!!!!";
+                entryData.Company = "!!!!!!!!!!!!";
+                entryData.Email = "!!!!!!!!!!!!";
 
-                    if (IsElementPresent(By.Name("selected[]")) == true)
-                    {
-                       driver.FindElement(By.XPath("//*[starts-with(@name,'selected')]")).Click();
-                    }
+                manager.Entry.EntryCreater(entryData);
             }
-        }
+            if (IsElementPresent(By.Name("selected[]")) == true)
+            {
+                driver.FindElement(By.XPath("//input[@name='selected[]']")).Click();
+            }
+        }            
 
         public void FillEntryForm(EntryData entryData)
         {
@@ -93,7 +95,14 @@ namespace WebAddressbookTests
 
         public void EditEntry()
         {
+            if (IsElementPresent(By.XPath("//img[@alt='Edit']")) == false)
+            {
+
+            }
+                if (IsElementPresent(By.XPath("//img[@alt='Edit']")) == true)
+            { 
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            }
         }
     }
 }

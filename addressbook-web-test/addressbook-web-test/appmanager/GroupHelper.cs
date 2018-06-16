@@ -5,7 +5,7 @@ namespace WebAddressbookTests
 {
     public class GroupHelper : HelperBase
     {
-        private string baseURL;
+        //private string baseURL;
 
         public GroupHelper(ApplicationManager manager) 
             : base (manager)
@@ -95,5 +95,6 @@ namespace WebAddressbookTests
                 }
             }
         }
+
     }
 }
