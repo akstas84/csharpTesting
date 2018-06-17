@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 
 namespace WebAddressbookTests
@@ -79,20 +80,31 @@ namespace WebAddressbookTests
 
         public void SelectGroup(int index)
         {
-            if (IsElementPresent(By.Name("selected[]")) == false)
-            {
-                GroupData group = new GroupData();
-                group.Name = "crGroupHelper";
-                group.Header = "crHelperFirst";
-                group.Footer = "crHelperFirst";
-                manager.Group.GroupCreater(group);
+            //if (IsElementPresent(By.Name("selected[]")) == false)
+            //{
+                //GroupData group = new GroupData();
+                //group.Name = "crGroupHelper";
+                //group.Header = "crHelperFirst";
+                //group.Footer = "crHelperFirst";
+                //manager.Group.GroupCreater(group);
 
-                if (IsElementPresent(By.Name("selected[]")) == true)
-                {
-                    driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-                }
-            }
+                //if (IsElementPresent(By.Name("selected[]")) == true)
+                //{
+                    driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
+                //}
+            //}
         }
 
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
+        }
     }
 }
