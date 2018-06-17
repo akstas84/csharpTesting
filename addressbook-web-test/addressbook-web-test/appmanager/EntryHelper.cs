@@ -17,6 +17,7 @@ namespace WebAddressbookTests
             manager.Navigator.GoToEtryPage();
             manager.Entry.FillEntryForm(entryData);
             manager.Navigator.PushButtonEnter();
+            manager.Navigator.OpenBasePage();
             return this;
         }
 
@@ -46,8 +47,7 @@ namespace WebAddressbookTests
 
         public void PushButtonDeleteEntry()
         {
-            if (driver.Url == baseURL + "/addressbook/group.php"
-+                && IsElementPresent(By.Name("selected[]")) == true)
+            if (IsElementPresent(By.Name("selected[]")) == true)
             {
                 driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             }
@@ -66,10 +66,7 @@ namespace WebAddressbookTests
 
                 manager.Entry.EntryCreater(entryData);
             }
-            if (IsElementPresent(By.Name("selected[]")) == true)
-            {
-                driver.FindElement(By.XPath("//input[@name='selected[]']")).Click();
-            }
+                    driver.FindElement(By.XPath("//input[@name='selected[]']")).Click();
         }            
 
         public void FillEntryForm(EntryData entryData)

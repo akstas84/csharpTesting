@@ -5,8 +5,6 @@ namespace WebAddressbookTests
 {
     public class GroupHelper : HelperBase
     {
-        //private string baseURL;
-
         public GroupHelper(ApplicationManager manager) 
             : base (manager)
         {
@@ -42,13 +40,13 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private GroupHelper InitGroupModificaton()
+        public GroupHelper InitGroupModificaton()
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
         }
 
-        private GroupHelper SubmitGroupModification()
+        public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
             return this;
@@ -74,12 +72,12 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private void DeleteGroup()
+        public void DeleteGroup()
         {
                 driver.FindElement(By.Name("delete")).Click();
         }
 
-        private void SelectGroup(int index)
+        public void SelectGroup(int index)
         {
             if (IsElementPresent(By.Name("selected[]")) == false)
             {
