@@ -47,7 +47,7 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        [Test, TestCaseSource("GroupDataFromFile")]
+        [Test, TestCaseSource("GroupDataFromCsvFile")]
         public void GroupCreationTest(GroupData group)
         {
             //GroupData group = new GroupData();

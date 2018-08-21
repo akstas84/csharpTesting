@@ -22,7 +22,6 @@ namespace addressbook_test_data_generators
                 {
                     Header = TestBase.GenerateRandomString(100),
                     Footer = TestBase.GenerateRandomString(100)
-                    
                 });
             }
             if (format == "csv")
@@ -35,7 +34,7 @@ namespace addressbook_test_data_generators
             }
             else
             {
-                System.Console.Out.Write("Unrecognized format " + format);
+                Console.Out.Write("Unrecognized format " + format);
             }
             writer.Close();
         }
@@ -53,7 +52,5 @@ namespace addressbook_test_data_generators
         {
             new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
         }
-
-
     }
 }
