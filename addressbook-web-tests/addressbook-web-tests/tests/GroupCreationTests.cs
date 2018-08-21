@@ -12,7 +12,6 @@ namespace WebAddressbookTests
     [TestFixture]
     public class GroupCreationTests : AuthTestBase
     {
-
         //public static IEnumerable<GroupData> RandomGroupDataProvider()
         //{
         //    List<GroupData> goups = new List<GroupData>();
