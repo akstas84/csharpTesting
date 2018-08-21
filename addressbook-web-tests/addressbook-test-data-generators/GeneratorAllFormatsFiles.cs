@@ -8,7 +8,7 @@ using WebAddressbookTests;
 
 namespace addressbook_test_data_generators
 {
-    class Program
+    class GeneratorAllFormatsFiles
     {
         static void Main(string[] args)
         {
