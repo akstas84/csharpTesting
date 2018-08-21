@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace WebAddressbookTests
 {
@@ -23,6 +24,11 @@ namespace WebAddressbookTests
         //        });
         //    }
         //}
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+           return JsonConvert.DeserializeObject<List<GroupData>>(
+                File.ReadAllText(@"groups.json"));
+        }
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
