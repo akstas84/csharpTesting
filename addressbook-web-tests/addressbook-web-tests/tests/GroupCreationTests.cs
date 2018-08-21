@@ -53,7 +53,7 @@ namespace WebAddressbookTests
             return groups;
         }
 
-        [Test, TestCaseSource("GroupDataFromCsvFile")]
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
         {
             //GroupData group = new GroupData();
