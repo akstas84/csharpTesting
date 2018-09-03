@@ -1,8 +1,9 @@
 ﻿using System;
-
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "group_list")]
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
         //private string name;
@@ -47,12 +48,16 @@ namespace WebAddressbookTests
             return Name.CompareTo(other.Name);
         }
 
+        [Column(Name= "group_name")]
         public string Name { get; set; }
 
+        [Column(Name = "group_header")]
         public string Header { get; set; }
 
+        [Column(Name = "group_footer")]
         public string Footer { get; set; }
 
+        [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
     }
