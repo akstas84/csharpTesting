@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using LinqToDB.Mapping;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
     [Table(Name = "group_list")]
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        //private string name;
-        //private string header = "";
-        //private string footer = "";
 
         public GroupData()
         {
@@ -60,5 +59,12 @@ namespace WebAddressbookTests
         [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
+        public static List<GroupData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+        }
     }
 }
