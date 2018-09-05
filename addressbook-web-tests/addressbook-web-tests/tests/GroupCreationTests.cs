@@ -5,7 +5,7 @@ using System.IO;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Linq;
+
 
 namespace WebAddressbookTests
 {
@@ -13,7 +13,6 @@ namespace WebAddressbookTests
     [TestFixture]
     public class GroupCreationTests : AuthTestBase
     {
-
         //public static IEnumerable<GroupData> RandomGroupDataProvider()
         //{
         //    List<GroupData> goups = new List<GroupData>();
@@ -114,10 +113,16 @@ namespace WebAddressbookTests
         [Test]
         public void TestDBConnectivity()
         {
-            app.Groups.GetGroupList();
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
 
-            AddressBookDB db = new AddressBookDB();
-            List<GroupData> fromDb = (from g in db.Groups select g).ToList();
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
         }
+
     }
 }
