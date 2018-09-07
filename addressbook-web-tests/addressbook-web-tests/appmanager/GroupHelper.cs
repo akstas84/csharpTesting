@@ -71,6 +71,14 @@ namespace WebAddressbookTests
             ReturnToGroupsPage();
             return this;
         }
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
         public GroupHelper GoupModification(int v, GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
@@ -127,6 +135,11 @@ namespace WebAddressbookTests
             //    GroupCreationTests gCreater = new GroupCreationTests();
             //    gCreater.GroupCreationTest();
             //}               
+            return this;
+        }
+        public GroupHelper SelectGroup(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='"+ id+"'])")).Click();             
             return this;
         }
         public GroupHelper SubmitGroupCreation()

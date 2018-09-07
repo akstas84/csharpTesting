@@ -5,7 +5,7 @@ namespace WebAddressbookTests
 {
 
     [TestFixture]
-    public class GroupModTest : AuthTestBase
+    public class GroupModTest :GroupTestBase
     {
 
         [Test]
